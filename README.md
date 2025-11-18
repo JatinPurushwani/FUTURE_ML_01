@@ -1,116 +1,125 @@
-# **📌 AI-Powered Sales Forecasting Dashboard **
+# **📌 AI - Powered Retail Sales Forecasting **
 
-*A practical, beginner-friendly forecasting project using Python + Prophet + Power BI.*
+A clean, practical forecasting project built with **Python + Prophet** and visualized through **Power BI**, designed for real-world retail analytics use-cases.
 
----
-
-## **🧭 1. Project Overview**
-
-This project is about predicting **future retail sales** using historical data.
-You’ll build a simple forecasting pipeline in Python and present the output through a clean Power BI dashboard.
-
-This is meant to simulate how forecasting is done in real retail analytics teams—no complex math, no academic overkill. Just a clear, working solution.
+This project predicts **monthly store sales** using historical data from the **Rossmann Store Sales** competition on Kaggle.
 
 ---
 
-## **🎯 2. What This Project Delivers**
-
-By the end, this repository will contain:
-
-* A clear and reproducible **Jupyter Notebook** for forecasting
-* A **forecast_output.csv** containing dates + predictions
-* A polished **Power BI dashboard** showing trends and forecasts
-* A clean **README.md** explaining your approach
-* A neat folder structure that looks professional
-
-This is the exact structure companies expect from an intern-level delivery.
-
----
-
-## **📂 3. Folder Structure**
-
-This repository follows a simple, consultant-style structure:
+# **📁 Project Structure**
 
 ```
 FUTURE_ML_01/
 │
-├── data/                ← raw dataset (sales.csv)
-├── notebooks/           ← Jupyter notebooks
-├── output/              ← forecast_output.csv here
-├── powerbi/             ← final Power BI dashboard (.pbix)
-└── README.md            ← project documentation
+├── data/
+│     ├── train.csv
+│     └── store.csv
+│
+├── notebooks/
+│     └── 01_forecasting.ipynb
+│
+├── output/
+│     └── forecast_output.csv
+│
+├── powerbi/
+│     └── Rossmann_Forecast.pbix     (dashboard)
+│
+└── README.md
 ```
+---
 
-Each folder has a purpose.
-No clutter, no random files floating around.
+# **🎯 Objective**
+
+Build a **forecasting system** that can help retail managers answer:
+
+* How will sales behave in the next months?
+* Are sales trending upward or downward?
+* Which periods show seasonality?
+* How uncertain is the forecast?
+* How should inventory & staffing adjust?
 
 ---
 
-## **📥 4. Dataset Used**
+# **🔍 Dataset**
 
-You can use any retail sales dataset, but the recommended one is:
+**Source:** Rossmann Store Sales (Kaggle)
+Contains:
+* Daily sales
+* Open/Closed indicator
+* Promotions
+* Store metadata
+* Competitor information
 
-**Retail Sales Forecasting (Kaggle)**
-(Contains date + sales + optional store/category info)
-
-Place your dataset as:
-
-```
-data/sales.csv
-```
-
-If your file uses different column names (e.g., "Date" instead of "date"), you will adjust the notebook accordingly.
+For forecasting, we aggregate sales to **monthly total across all stores**.
 
 ---
 
-## **⚙️ 5. Technologies Used**
+# **🛠️ Tools & Technologies**
 
-| Category        | Tools                                           |
-| --------------- | ----------------------------------------------- |
-| Programming     | Python, Jupyter Notebook                        |
-| Forecasting     | Prophet (Facebook), Scikit-learn (optional)     |
-| Data Handling   | Pandas, NumPy                                   |
-| Visualization   | Matplotlib (Python), Power BI (final dashboard) |
-| Version Control | Git + GitHub                                    |
-
-All widely used in real analytics teams.
+| Component     | Tools Used                        |
+| ------------- | --------------------------------- |
+| Forecasting   | Prophet (Facebook)                |
+| Data Prep     | Pandas, NumPy                     |
+| Visualization | Matplotlib, Power BI              |
+| Modeling      | Scikit-learn metrics (MAE / RMSE) |
+| Notebook      | Jupyter                           |
+| Versioning    | Git + GitHub                      |
 
 ---
 
-## **📝 6. What the Notebook Will Do**
+# **📌 Methodology (Short, Clear, Interview-Ready)**
 
-Your main notebook (`01_forecasting.ipynb`) will follow this simple workflow:
+### **1. Load & Merge Data**
 
-### **1. Load data**
+* train.csv + store.csv
+* Remove closed days (Open = 0)
+* Remove zero-sales entries
+* Keep only required columns
 
-* Read the CSV file
-* Convert date column to datetime
-* Sort by date
+### **2. Aggregate to Monthly Series**
 
-### **2. Clean & Prepare**
+Daily → Monthly using:
 
-* Handle missing values
-* Aggregate to monthly sales (retail works best monthly)
-* Rename columns to Prophet format → `ds` and `y`
+```python
+df.resample("M")["Sales"].sum()
+```
 
-### **3. Forecast Model (Prophet)**
+Prophet prefers clean, stable monthly trends.
 
-* Fit Prophet on monthly sales
-* Generate future dates (next 12 months)
-* Get predictions + lower/upper uncertainty intervals
+### **3. Train–Holdout Split**
 
-### **4. Create forecast_output.csv**
+* Last 6 months held out for evaluation
+* Remaining used for training
 
-This file will include:
+### **4. Prophet Model**
+
+Configured with:
+
+* yearly_seasonality=True
+* weekly_seasonality=False
+* daily_seasonality=False
+
+### **5. Evaluation**
+
+Using MAE + RMSE.
+
+**Final performance:**
+
+```
+MAE  = 34,977,653
+RMSE = 42,483,831
+```
+
+This is expected for aggregated retail sales with large magnitudes.
+
+### **6. Export for Power BI**
+
+A unified CSV used by dashboard:
 
 | date | actual | forecast | lower | upper |
 | ---- | ------ | -------- | ----- | ----- |
 
-Power BI will use this file to create the dashboard.
-
-### **5. Export**
-
-Save the CSV to:
+Saved to:
 
 ```
 output/forecast_output.csv
@@ -118,92 +127,117 @@ output/forecast_output.csv
 
 ---
 
-## **📊 7. Power BI Dashboard Contents**
+# **📊 Key Visual — Actual vs Forecast**
 
-Your dashboard will include:
+This line chart shows monthly sales (2013–2015) and forecast (2015–2016).
 
-### **✔ Actual vs Forecast Line Chart**
-
-The main visual comparing past sales and predicted values.
-
-### **✔ Confidence Interval (lower–upper)**
-
-Shows the uncertainty range.
-
-### **✔ Seasonality View**
-
-Month-wise trend visualization.
-
-### **✔ KPI Cards**
-
-* Next month forecast
-* Predicted growth/decline
-* Peak month
-* Low month
-
-### **✔ Filters (Slicers)**
-
-* Date range
-* Store (if dataset supports)
-* Category (if dataset supports)
-
-This makes your dashboard user-friendly for managers.
-
----
-
-## **💡 8. Business Insights You Will Extract**
-
-Your submission must include real insights like:
-
-* Which months show strong seasonality
-* Expected sales in the next 3–6–12 months
-* Whether sales trend is upward or downward
-* Inventory recommendations (increase/decrease)
-* Which period requires higher promotional effort
-
-These don’t need complex logic—just clear interpretation of your charts.
-
----
-
-## **🚀 9. How to Reproduce This Project**
-
-### Install required libraries:
-
-```bash
-pip install pandas numpy matplotlib prophet scikit-learn
 ```
 
-### Run the notebook:
+```
 
-1. Open Jupyter
-2. Navigate to `notebooks/`
-3. Run each cell inside `01_forecasting.ipynb`
-4. The final CSV appears in `output/`
-
-### Open Power BI:
-
-1. Load `forecast_output.csv`
-2. Build visuals as described
-3. Save your dashboard in `powerbi/`
 
 ---
 
-## **📌 10. Next Steps (For Yourself)**
+# **📈 What the Power BI Dashboard Includes**
 
-Once Task 1 is complete, you can improve the project by adding:
+The dashboard contains:
 
-* Store-level forecasting
-* Category-level forecasting
-* XGBoost model for accuracy comparison
-* Automated daily retraining
-* Integrated APIs
+### ✔ Actual vs Forecast line chart
 
-None of this is required for Task 1, but useful for growth.
+Shows base trend + future predictions.
+
+### ✔ Confidence interval (lower–upper)
+
+Represents uncertainty in the forecast.
+
+### ✔ Seasonality view
+
+Month-over-month pattern extracted from Prophet.
+
+### ✔ KPI Cards
+
+* Next month forecast
+* Expected YoY change
+* Highest predicted month
+* Lowest predicted month
+
+### ✔ Filters
+
+* Date
+* Store (optional)
+* Promo status (optional)
+
+Even a minimal dashboard satisfies the task.
 
 ---
 
-## **🤝 11. Acknowledgements**
+# **💡 Insights From the Forecast**
 
-This project is built as part of the **Future Interns Track (Task 1)**, focusing on practical forecasting skills used in real analytics roles.
+Based on the aggregated Rossmann monthly sales:
+
+* Clear **yearly seasonality**
+* Sales dip mid-year and peak in Q4
+* Forecast shows **moderate upward trend**
+* Promotion periods match sales spikes
+* Uncertainty band widens over time (normal for Prophet)
+* Useful for **inventory planning**, **cashflow** and **staffing**
+
+---
+
+# **🚀 How to Run the Entire Pipeline**
+
+### **1. Install dependencies**
+
+```bash
+pip install pandas numpy prophet matplotlib scikit-learn
+```
+
+### **2. Run the notebook**
+
+```bash
+notebooks/01_forecasting.ipynb
+```
+
+### **3. Get output CSV**
+
+File generated at:
+
+```
+output/forecast_output.csv
+```
+
+### **4. Load into Power BI**
+
+* Home → Get Data → CSV
+* Select `forecast_output.csv`
+* Build visuals
+* Save dashboard in `powerbi/`
+
+---
+
+# **📌 Why Prophet? **
+
+Prophet is ideal for:
+
+* Business time series
+* Seasonality
+* Missing data
+* Irregularities
+* Quick deployment
+* Interpretable parameters
+
+Used by:
+
+* Meta
+* Uber
+* Airbnb
+* Shopify
+* Walmart Analytics Teams
+
+---
+
+# **🤝 Acknowledgements**
+
+This project is submitted as **Task 1** of the *Future Interns ML Track*, designed to replicate real-world forecasting workflows used in retail analytics.
 
 ---
