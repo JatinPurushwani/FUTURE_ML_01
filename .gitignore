@@ -1,0 +1,22 @@
+# Python cache
+__pycache__/
+*.pyc
+
+# Jupyter checkpoints
+.ipynb_checkpoints/
+
+# Virtual environments
+venv/
+.env/
+
+# Power BI temp files
+*.pbix.user
+
+# OS junk
+.DS_Store
+Thumbs.db
+
+# Ignore large temp data dumps
+data/*.zip
+data/*.7z
+
