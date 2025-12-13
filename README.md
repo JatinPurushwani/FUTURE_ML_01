@@ -1,4 +1,4 @@
-# **📌 AI - Powered Retail Sales Forecasting **
+# ** AI - Powered Retail Sales Forecasting **
 
 A clean, practical forecasting project built with **Python + Prophet** and visualized through **Power BI**, designed for real-world retail analytics use-cases.
 
@@ -6,7 +6,7 @@ This project predicts **monthly store sales** using historical data from the **R
 
 ---
 
-# **📁 Project Structure**
+# ** Project Structure**
 
 ```
 FUTURE_ML_01/
@@ -28,7 +28,7 @@ FUTURE_ML_01/
 ```
 ---
 
-# **🎯 Objective**
+# ** Objective**
 
 Build a **forecasting system** that can help retail managers answer:
 
@@ -40,7 +40,7 @@ Build a **forecasting system** that can help retail managers answer:
 
 ---
 
-# **🔍 Dataset**
+# ** Dataset**
 
 **Source:** Rossmann Store Sales (Kaggle)
 Contains:
@@ -54,7 +54,7 @@ For forecasting, we aggregate sales to **monthly total across all stores**.
 
 ---
 
-# **🛠️ Tools & Technologies**
+# ** Tools & Technologies**
 
 | Component     | Tools Used                        |
 | ------------- | --------------------------------- |
@@ -67,7 +67,7 @@ For forecasting, we aggregate sales to **monthly total across all stores**.
 
 ---
 
-# **📌 Methodology (Short, Clear, Interview-Ready)**
+# ** Methodology (Short, Clear, Interview-Ready)**
 
 ### **1. Load & Merge Data**
 
@@ -127,51 +127,36 @@ output/forecast_output.csv
 
 ---
 
-# **📊 Key Visual — Actual vs Forecast**
-
-This line chart shows monthly sales (2013–2015) and forecast (2015–2016).
-
-```
-
-```
-
-
----
-
-# **📈 What the Power BI Dashboard Includes**
+# ** What the Power BI Dashboard Includes**
 
 The dashboard contains:
 
-### ✔ Actual vs Forecast line chart
+###  Actual vs Forecast line chart
 
 Shows base trend + future predictions.
 
-### ✔ Confidence interval (lower–upper)
+###  Confidence interval (lower–upper)
 
 Represents uncertainty in the forecast.
 
-### ✔ Seasonality view
+###  Seasonality view
 
 Month-over-month pattern extracted from Prophet.
 
-### ✔ KPI Cards
+###  KPI Cards
 
 * Next month forecast
 * Expected YoY change
 * Highest predicted month
 * Lowest predicted month
 
-### ✔ Filters
+###  Filters
 
 * Date
-* Store (optional)
-* Promo status (optional)
-
-Even a minimal dashboard satisfies the task.
 
 ---
 
-# **💡 Insights From the Forecast**
+# ** Insights From the Forecast**
 
 Based on the aggregated Rossmann monthly sales:
 
@@ -184,7 +169,7 @@ Based on the aggregated Rossmann monthly sales:
 
 ---
 
-# **🚀 How to Run the Entire Pipeline**
+# ** How to Run the Entire Pipeline**
 
 ### **1. Install dependencies**
 
@@ -215,28 +200,8 @@ output/forecast_output.csv
 
 ---
 
-# **📌 Why Prophet? **
 
-Prophet is ideal for:
-
-* Business time series
-* Seasonality
-* Missing data
-* Irregularities
-* Quick deployment
-* Interpretable parameters
-
-Used by:
-
-* Meta
-* Uber
-* Airbnb
-* Shopify
-* Walmart Analytics Teams
-
----
-
-# **🤝 Acknowledgements**
+# ** Acknowledgements**
 
 This project is submitted as **Task 1** of the *Future Interns ML Track*, designed to replicate real-world forecasting workflows used in retail analytics.
 
