@@ -1,12 +1,12 @@
-# ** AI - Powered Retail Sales Forecasting **
+#  **AI - Powered Retail Sales Forecasting**
 
-A clean, practical forecasting project built with **Python + Prophet** and visualized through **Power BI**, designed for real-world retail analytics use-cases.
+A clean, practical forecasting project built with **Python** and visualized through **Power BI**, designed for real-world retail analytics use-cases.
 
 This project predicts **monthly store sales** using historical data from the **Rossmann Store Sales** competition on Kaggle.
 
 ---
 
-# ** Project Structure**
+# **Project Structure**
 
 ```
 FUTURE_ML_01/
@@ -20,7 +20,7 @@ FUTURE_ML_01/
 │
 ├── output/
 │     └── forecast_output.csv
-│
+│     └── business_nsights.pdf
 ├── powerbi/
 │     └── Rossmann_Forecast.pbix     (dashboard)
 │
@@ -28,7 +28,7 @@ FUTURE_ML_01/
 ```
 ---
 
-# ** Objective**
+# **Objective**
 
 Build a **forecasting system** that can help retail managers answer:
 
@@ -40,7 +40,7 @@ Build a **forecasting system** that can help retail managers answer:
 
 ---
 
-# ** Dataset**
+# **Dataset**
 
 **Source:** Rossmann Store Sales (Kaggle)
 Contains:
@@ -54,7 +54,7 @@ For forecasting, we aggregate sales to **monthly total across all stores**.
 
 ---
 
-# ** Tools & Technologies**
+# **Tools & Technologies**
 
 | Component     | Tools Used                        |
 | ------------- | --------------------------------- |
@@ -67,7 +67,7 @@ For forecasting, we aggregate sales to **monthly total across all stores**.
 
 ---
 
-# ** Methodology (Short, Clear, Interview-Ready)**
+# **Methodology (Short, Clear, Interview-Ready)**
 
 ### **1. Load & Merge Data**
 
@@ -127,7 +127,7 @@ output/forecast_output.csv
 
 ---
 
-# ** What the Power BI Dashboard Includes**
+# **What the Power BI Dashboard Includes**
 
 The dashboard contains:
 
@@ -156,7 +156,7 @@ Month-over-month pattern extracted from Prophet.
 
 ---
 
-# ** Insights From the Forecast**
+# **Insights From the Forecast**
 
 Based on the aggregated Rossmann monthly sales:
 
@@ -169,7 +169,7 @@ Based on the aggregated Rossmann monthly sales:
 
 ---
 
-# ** How to Run the Entire Pipeline**
+# **How to Run the Entire Pipeline**
 
 ### **1. Install dependencies**
 
@@ -201,7 +201,7 @@ output/forecast_output.csv
 ---
 
 
-# ** Acknowledgements**
+# **Acknowledgements**
 
 This project is submitted as **Task 1** of the *Future Interns ML Track*, designed to replicate real-world forecasting workflows used in retail analytics.
 
